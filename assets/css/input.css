@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+
+.nav-burger.active .burger-section:first-child {
+    transform: rotate(45deg) translate(4px,4px);
+}
+.nav-burger.active .burger-section:nth-child(2) {
+    opacity: 0;
+}
+.nav-burger.active .burger-section:last-child {
+    transform: rotate(-45deg) translate(7px,-9px);
+}
+.nav-list {
+    height: 0px;
+    transition: height 0.5s;
+}
+@media (max-width: 640px) {
+    .nav-list.active {
+        height: 125px;
+    }
+}
+
+@tailwind utilities;
+
+@font-face {
+    font-family: "Goldman";
+    src: url("../fonts/Goldman/Goldman-Regular.ttf");
+}
+@font-face {
+    font-family: "Goldman Bold";
+    src: url("../fonts/Goldman/Goldman-Bold.ttf");
+}
