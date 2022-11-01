@@ -8,7 +8,8 @@ module.exports = {
           100: '#BBE1FA',
           200: '#0C7B93',
           300: '#27496D',
-          400: '#142850'
+          400: '#142850',
+          500: '#141E61'
         },
         transparent: 'transparent'
       },

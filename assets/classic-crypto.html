@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Cryptography</title>
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+<body class="bg-app-100 font-Goldman">
+    <header class="relative h-20 z-10">
+        <nav class="flex fixed justify-between w-full items-center bg-app-400 p-4 gap-y-3">
+            <h1 class="nav-brand text-white text-xl sm:text-2xl"><a href="index.html">CryptoZ</a></h1>
+            <div class="nav-burger flex flex-col p-2 gap-1 cursor-pointer sm:hidden">
+                <span class="burger-section w-8 h-1 bg-white rounded transition-transform duration-75"></span>
+                <span class="burger-section w-8 h-1 bg-white rounded transition-transform duration-75"></span>
+                <span class="burger-section w-8 h-1 bg-white rounded transition-transform duration-75"></span>
+            </div>
+            <div class="nav-list list-none flex flex-col gap-3 bg-app-400 text-white fixed pl-5 top-16 left-0 w-full overflow-hidden sm:static sm:flex-row sm:top-auto sm:pl-3 sm:p-3 sm:h-auto sm:w-fit">
+                <li><a class="hover:text-app-100" href="index.html">Home</a></li>
+                <li><a class="hover:text-app-100" href="#">Features</a></li>
+                <li><a class="hover:text-app-100" href="#">Informations</a></li>
+            </div>
+        </nav>
+    </header>
+    <main class="p-5 pt-0 pb-9 flex flex-col w-full gap-5">
+        <section class="title text-xl">
+            <h1 class="mb-2 font-bold">Classic Cryptography</h1>
+            <hr class="w-1/6 h-1 bg-black rounded">
+        </section>
+        <section class="content flex flex-col w-full gap-3">
+            <div class="input-method flex flex-col gap-2 relative">
+                <p class="text-lg">Method</p>
+                <div class="input-expand bg-app-200 p-2 flex justify-between items-center cursor-pointer hover:bg-app-500 rounded">
+                    <input type="hidden" id="method">
+                    <p class="text-white">Caesar Cipher</p>
+                    <img src="./img/svg/expand.svg" class="w-9" alt="expand">
+                </div>
+                <div class="options list-none bg-app-300 text-white h-0 overflow-hidden absolute top-24 left-0 w-full rounded">
+                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Caesar Cipher</li>
+                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Vigenere Cipher</li>
+                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Rail Fence Cipher</li>
+                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Playfair Cipher</li>
+                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Affine Cipher</li>
+                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">One Time Pad</li>
+                </div>
+            </div>
+            <div class="input-key flex flex-col gap-2">
+                <p class="text-lg">Key</p>
+                <input type="text" class="p-3 rounded focus:outline-none bg-app-200 text-white" id="key" placeholder="-- Enter Key --">
+            </div>
+            <div class="input-offset flex flex-col gap-2">
+                <p class="text-lg">Offset</p>
+                <input type="text" class="p-3 rounded focus:outline-none bg-app-200 text-white" id="offset" placeholder="-- Enter Offset">
+            </div>
+            <div class="area-plaintext flex flex-col gap-2">
+                <p class="text-lg">Plain Text</p>
+                <textarea class="p-3 rounded focus:outline-none bg-app-200 text-white resize-none h-40" id="plaintext"></textarea>
+            </div>
+            <div class="area-ciphertext flex flex-col gap-2">
+                <p class="text-lg">Cipher Text</p>
+                <textarea class="p-3 rounded focus:outline-none bg-app-200 text-white resize-none h-40" id="ciphertext"></textarea>
+            </div>
+            <div class="buttons flex justify-center mt-3 gap-3">
+                <p class="p-2 bg-app-300 text-white rounded cursor-pointer hover:bg-blue-900" id="encrypt">Encrypt</p>
+                <p class="p-2 bg-red-600 text-white rounded cursor-pointer hover:bg-red-500" id="decrypt">Decrypt</p>
+            </div>
+        </section>
+    </main>
+    <footer class="p-4 text-white bg-app-400 w-full flex justify-center items-center">
+        <h4 class="text-super-sm md:text-sm">Copyright &copy;2022 R4Z121. All Rights Reserved</h4>
+    </footer>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
