@@ -18,7 +18,7 @@
     transition: height 0.25s;
 }
 .options.active {
-    height: 288px;
+    height: 192px;
 }
 .input-expand.active {
     background-color: #141E61;

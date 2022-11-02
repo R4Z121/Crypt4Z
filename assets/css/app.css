@@ -532,7 +532,7 @@ video {
 }
 
 .options.active {
-  height: 288px;
+  height: 192px;
 }
 
 .input-expand.active {
@@ -555,8 +555,8 @@ input[type=number]{
   }
 }
 
-.invisible {
-  visibility: hidden;
+.static {
+  position: static;
 }
 
 .fixed {
@@ -639,6 +639,10 @@ input[type=number]{
   height: 100%;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-full {
   width: 100%;
 }
@@ -717,6 +721,10 @@ input[type=number]{
 
 .gap-y-3 {
   row-gap: 0.75rem;
+}
+
+.overflow-auto {
+  overflow: auto;
 }
 
 .overflow-hidden {
@@ -876,6 +884,10 @@ input[type=number]{
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -941,18 +953,6 @@ input[type=number]{
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.peer:valid ~ .peer-valid\:hidden {
-  display: none;
-}
-
-.peer:invalid ~ .peer-invalid\:visible {
-  visibility: visible;
-}
-
-.peer\/offset:invalid ~ .peer-invalid\/offset\:block {
-  display: block;
 }
 
 .peer:invalid ~ .peer-invalid\:block {
@@ -1064,14 +1064,6 @@ input[type=number]{
 
   .lg\:w-2\/12 {
     width: 16.666667%;
-  }
-
-  .lg\:flex-row-reverse {
-    flex-direction: row-reverse;
-  }
-
-  .lg\:justify-between {
-    justify-content: space-between;
   }
 
   .lg\:gap-14 {

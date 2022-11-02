@@ -18,8 +18,8 @@
             </div>
             <div class="nav-list list-none flex flex-col gap-3 bg-app-400 text-white fixed pl-5 top-16 left-0 w-full overflow-hidden sm:static sm:flex-row sm:top-auto sm:pl-3 sm:p-3 sm:h-auto sm:w-fit">
                 <li><a class="hover:text-app-100" href="index.html">Home</a></li>
-                <li><a class="hover:text-app-100" href="#">Features</a></li>
-                <li><a class="hover:text-app-100" href="#">Informations</a></li>
+                <li><a class="hover:text-app-100" href="development.html">Steganography</a></li>
+                <li><a class="hover:text-app-100" href="development.html">Informations</a></li>
             </div>
         </nav>
     </header>
@@ -29,15 +29,15 @@
             <hr class="w-1/6 h-1 bg-black rounded">
         </section>
         <section class="content flex flex-col w-full gap-3">
-            <div class="input flex flex-col w-full gap-3 lg:flex-row-reverse lg:justify-between">
+            <div class="input flex flex-col w-full gap-3">
                 <div class="input-method flex flex-col gap-2 relative">
                     <p class="text-lg">Method</p>
                     <div class="input-expand bg-app-200 p-2 flex justify-between items-center cursor-pointer hover:bg-app-500 sm:w-80 rounded">
-                        <input type="hidden" id="method">
+                        <input type="hidden" id="method" value="Caesar Cipher">
                         <p class="text-white">Caesar Cipher</p>
                         <img src="./img/svg/expand.svg" class="w-9" alt="expand">
                     </div>
-                    <div class="options list-none bg-app-300 text-white h-0 overflow-hidden absolute top-24 left-0 w-full sm:w-80 rounded">
+                    <div class="options list-none bg-app-300 text-white h-0 overflow-auto absolute top-24 left-0 w-full sm:w-80 rounded">
                         <li class="p-3 hover:cursor-pointer hover:bg-app-500">Caesar Cipher</li>
                         <li class="p-3 hover:cursor-pointer hover:bg-app-500">Vigenere Cipher</li>
                         <li class="p-3 hover:cursor-pointer hover:bg-app-500">Rail Fence Cipher</li>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="input-offset flex flex-col gap-2">
                         <p class="text-lg">Offset</p>
-                        <input type="number" class="p-3 rounded focus:outline-none bg-app-200 text-white sm:w-80 invalid:ring-2 invalid:ring-red-600 peer" id="offset" placeholder="-- Enter Offset" disabled>
+                        <input type="number" class="p-3 rounded focus:outline-none bg-app-200 text-white sm:w-80 invalid:ring-2 invalid:ring-red-600 peer" id="offset" placeholder="-- Enter Offset --">
                         <p class="text-super-sm text-red-600 hidden peer-invalid:block">Please input number only</p>
                     </div>
                 </div>
