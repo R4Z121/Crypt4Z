@@ -23,45 +23,53 @@
             </div>
         </nav>
     </header>
-    <main class="p-5 pt-0 pb-9 flex flex-col w-full gap-5">
+    <main class="p-5 pt-0 sm:pt-5 pb-9 flex flex-col w-full gap-5">
         <section class="title text-xl">
             <h1 class="mb-2 font-bold">Classic Cryptography</h1>
             <hr class="w-1/6 h-1 bg-black rounded">
         </section>
         <section class="content flex flex-col w-full gap-3">
-            <div class="input-method flex flex-col gap-2 relative">
-                <p class="text-lg">Method</p>
-                <div class="input-expand bg-app-200 p-2 flex justify-between items-center cursor-pointer hover:bg-app-500 rounded">
-                    <input type="hidden" id="method">
-                    <p class="text-white">Caesar Cipher</p>
-                    <img src="./img/svg/expand.svg" class="w-9" alt="expand">
+            <div class="input flex flex-col w-full gap-3 lg:flex-row-reverse lg:justify-between">
+                <div class="input-method flex flex-col gap-2 relative">
+                    <p class="text-lg">Method</p>
+                    <div class="input-expand bg-app-200 p-2 flex justify-between items-center cursor-pointer hover:bg-app-500 sm:w-80 rounded">
+                        <input type="hidden" id="method">
+                        <p class="text-white">Caesar Cipher</p>
+                        <img src="./img/svg/expand.svg" class="w-9" alt="expand">
+                    </div>
+                    <div class="options list-none bg-app-300 text-white h-0 overflow-hidden absolute top-24 left-0 w-full sm:w-80 rounded">
+                        <li class="p-3 hover:cursor-pointer hover:bg-app-500">Caesar Cipher</li>
+                        <li class="p-3 hover:cursor-pointer hover:bg-app-500">Vigenere Cipher</li>
+                        <li class="p-3 hover:cursor-pointer hover:bg-app-500">Rail Fence Cipher</li>
+                        <li class="p-3 hover:cursor-pointer hover:bg-app-500">Playfair Cipher</li>
+                        <li class="p-3 hover:cursor-pointer hover:bg-app-500">Affine Cipher</li>
+                        <li class="p-3 hover:cursor-pointer hover:bg-app-500">One Time Pad</li>
+                    </div>
                 </div>
-                <div class="options list-none bg-app-300 text-white h-0 overflow-hidden absolute top-24 left-0 w-full rounded">
-                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Caesar Cipher</li>
-                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Vigenere Cipher</li>
-                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Rail Fence Cipher</li>
-                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Playfair Cipher</li>
-                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">Affine Cipher</li>
-                    <li class="p-3 hover:cursor-pointer hover:bg-app-500">One Time Pad</li>
+                <div class="input-text flex flex-col gap-3">
+                    <div class="input-key flex flex-col gap-2">
+                        <p class="text-lg">Key</p>
+                        <input type="number" class="number-only p-3 rounded focus:outline-none bg-app-200 text-white sm:w-80 invalid:ring-2 invalid:ring-red-600 peer" id="key" placeholder="-- Enter Key --">
+                        <p class="text-super-sm text-red-600 hidden peer-invalid:block">Please input number only</p>
+                    </div>
+                    <div class="input-offset flex flex-col gap-2">
+                        <p class="text-lg">Offset</p>
+                        <input type="number" class="p-3 rounded focus:outline-none bg-app-200 text-white sm:w-80 invalid:ring-2 invalid:ring-red-600 peer" id="offset" placeholder="-- Enter Offset" disabled>
+                        <p class="text-super-sm text-red-600 hidden peer-invalid:block">Please input number only</p>
+                    </div>
                 </div>
             </div>
-            <div class="input-key flex flex-col gap-2">
-                <p class="text-lg">Key</p>
-                <input type="text" class="p-3 rounded focus:outline-none bg-app-200 text-white" id="key" placeholder="-- Enter Key --">
+            <div class="area-text grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-14">
+                <div class="area-plaintext flex flex-col gap-2">
+                    <p class="text-lg">Plain Text</p>
+                    <textarea class="p-3 rounded focus:outline-none bg-app-200 text-white resize-none h-40 sm:h-64" id="plaintext"></textarea>
+                </div>
+                <div class="area-ciphertext flex flex-col gap-2">
+                    <p class="text-lg">Cipher Text</p>
+                    <textarea class="p-3 rounded focus:outline-none bg-app-200 text-white resize-none h-40 sm:h-64" id="ciphertext"></textarea>
+                </div>
             </div>
-            <div class="input-offset flex flex-col gap-2">
-                <p class="text-lg">Offset</p>
-                <input type="text" class="p-3 rounded focus:outline-none bg-app-200 text-white" id="offset" placeholder="-- Enter Offset">
-            </div>
-            <div class="area-plaintext flex flex-col gap-2">
-                <p class="text-lg">Plain Text</p>
-                <textarea class="p-3 rounded focus:outline-none bg-app-200 text-white resize-none h-40" id="plaintext"></textarea>
-            </div>
-            <div class="area-ciphertext flex flex-col gap-2">
-                <p class="text-lg">Cipher Text</p>
-                <textarea class="p-3 rounded focus:outline-none bg-app-200 text-white resize-none h-40" id="ciphertext"></textarea>
-            </div>
-            <div class="buttons flex justify-center mt-3 gap-3">
+            <div class="buttons flex mt-3 gap-3">
                 <p class="p-2 bg-app-300 text-white rounded cursor-pointer hover:bg-blue-900" id="encrypt">Encrypt</p>
                 <p class="p-2 bg-red-600 text-white rounded cursor-pointer hover:bg-red-500" id="decrypt">Decrypt</p>
             </div>
