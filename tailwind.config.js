@@ -25,6 +25,9 @@ module.exports = {
       },
       fontSize: {
         'super-sm': '10px'
+      },
+      minHeight: {
+        '75': '300px'
       }
     },
   },

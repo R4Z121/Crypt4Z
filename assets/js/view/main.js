@@ -5,11 +5,27 @@ const main = () => {
     const render = () => {
         const nav_burger = document.querySelector('.nav-burger');
         const nav_list = document.querySelector('.nav-list');
+        const id_link = document.querySelectorAll('.id-link');
 
         nav_burger.addEventListener('click', () => {
             nav_burger.classList.toggle('active');
             nav_list.classList.toggle('active');
         });
+
+        if(id_link){
+            id_link.forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault;
+                    const target = link.dataset.target;
+                    const offsetTop = document.querySelector("#" + target).offsetTop - 86;
+                    
+                    scroll({
+                        top: offsetTop,
+                        behavior: "smooth"
+                    });
+                });
+            });
+        }
 
         const expand = document.querySelector('.input-expand');
         if(expand){

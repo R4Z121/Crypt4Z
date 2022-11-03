@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/app.css">
 </head>
 <body class="bg-app-100 font-Goldman">
-    <header class="relative">
+    <header class="relative z-10" id="home">
         <nav class="flex fixed justify-between w-full items-center bg-app-400 p-4 gap-y-3">
             <h1 class="nav-brand text-white text-xl sm:text-2xl"><a href="index.html">CryptoZ</a></h1>
             <div class="nav-burger flex flex-col p-2 gap-1 cursor-pointer sm:hidden">
@@ -17,34 +17,41 @@
                 <span class="burger-section w-8 h-1 bg-white rounded transition-transform duration-75"></span>
             </div>
             <div class="nav-list list-none flex flex-col gap-3 bg-app-400 text-white fixed pl-5 top-16 left-0 w-full overflow-hidden sm:static sm:flex-row sm:top-auto sm:pl-3 sm:p-3 sm:h-auto sm:w-fit">
-                <li><a class="hover:text-app-100" href="index.html">Home</a></li>
-                <li><a class="hover:text-app-100" href="#features">Features</a></li>
+                <li class="id-link" data-target="home"><a class="hover:text-app-100 cursor-pointer">Home</a></li>
+                <li class="id-link" data-target="features"><a class="hover:text-app-100 cursor-pointer">Features</a></li>
                 <li><a class="hover:text-app-100" href="development.html">Informations</a></li>
             </div>
         </nav>
         <section class="w-full h-screen bg-hero-pattern bg-cover bg-no-repeat bg-center" id="jumbotron">
             <div class="w-full h-full flex flex-col justify-center items-center md:items-start bg-black bg-opacity-70 gap-4 p-3 md:pl-6 lg:gap-8" id="jumbo-text ">
                 <h1 class="text-white w-full text-2xl text-center font-GoldmanBold sm:text-3xl md:text-4xl md:text-left md:w-2/3 lg:text-5xl lg:w-6/12">Encode and Decode Message Easy With CryptoZ</h1>
-                <a href="#" class="button p-2.5 text-white bg-app-200 rounded-md text-sm cursor-pointer hover:bg-cyan-800 lg:text-xl">Get Started</a>
+                <a data-target="features" class="id-link button p-2.5 text-white bg-app-200 rounded-md text-sm cursor-pointer hover:bg-cyan-800 lg:text-xl">Get Started</a>
             </div>
         </section>
     </header>
-    <main class="grid grid-cols-1 p-5 pb-14 gap-8 sm:grid-cols-2 lg:gap-20">
-        <section>
-            <h1 class="text-2xl lg:text-3xl">What is CryptoZ ?</h1>
-            <hr class="bg-black rounded-md h-1 w-3/12 lg:w-2/12">
-            <div class="text-box mt-3 bg-app-300 p-4 rounded-md">
-                <p class="text-white text-sm text-justify md:text-base lg:text-lg">CryptoZ is a cryptography implementation web app that have many features and tools to encrypt or decrypt message. This website will also give you informations about how encryption and decryption for each tools work.</p>
+    <main class="flex flex-col gap-4 pb-10">
+        <section class="lg:p-5 p-4 w-full flex flex-col gap-3" id="features">
+            <div class="title mb-4 lg:mb-7">
+                <h1 class="text-lg lg:text-3xl font-bold lg:font-normal">Features</h1>
+                <hr class="bg-black rounded-md h-1 w-1/12">
             </div>
-        </section>
-        <section id="features">
-            <h1 class="text-2xl lg:text-3xl">Features</h1>
-            <hr class="bg-black rounded-md h-1 w-3/12 lg:w-2/12">
-            <div class="text-box mt-3 bg-app-300 p-4 rounded-md">
-                <a href="classic-crypto.html" class="text-white text-sm md:text-base lg:text-lg hover:text-app-100">* Classic Cryptography</a>
-                <p class="text-white text-sm md:text-base lg:text-lg ml-5 mb-4">Encrypt and decrypt text using some classic cryptography technique.</p>
-                <a href="development.html" class="text-white text-sm md:text-base lg:text-lg hover:text-app-100">* Steganography</a>
-                <p class="text-white text-sm md:text-base lg:text-lg ml-5">Hide text to an image, or extract hidden message from an Image.</p>
+            <div class="text-box grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="content bg-app-300 rounded-md overflow-hidden flex flex-col gap-3 relative min-h-75">
+                    <div class="text flex flex-col gap-3 p-4 mb-14">
+                        <h1 class="text-white text-base md:text-base lg:text-lg text-center mb-4">Classic Cryptography</h1>
+                        <p class="text-white text-sm md:text-base lg:text-lg">Encrypt and decrypt plain text using some classic cryptography technique.</p>
+                        <p class="text-white text-sm md:text-base lg:text-lg mt-4">Tools : Caesar, Vigenere, Rail Fence, Palyfair, Affine, One Time Pad</p>
+                    </div>
+                    <a href="classic-crypto.html" class="text-white bg-app-200 p-3 text-center absolute bottom-0 w-full hover:bg-blue-600">Go to</a>
+                </div>
+                <div class="content bg-app-300 rounded-md overflow-hidden flex flex-col gap-3 relative min-h-75">
+                    <div class="text flex flex-col gap-3 p-4 mb-14">
+                        <h1 class="text-white text-base md:text-base lg:text-lg text-center">Steganography</h1>
+                        <p class="text-white text-sm md:text-base lg:text-lg mt-4">Hide text to an image, or extract hidden message from an Image.</p>
+                    </div>
+                    <a href="development.html" class="text-white bg-app-200 p-3 text-center absolute bottom-0 w-full hover:bg-blue-600">Go to</a>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="p-4 text-white bg-app-400 w-full flex justify-center items-center">

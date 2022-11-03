@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "style-dev": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/app.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.1"
+    "tailwindcss": "^3.2.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }
