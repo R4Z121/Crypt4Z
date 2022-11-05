@@ -126,7 +126,11 @@ const main = () => {
                     alert("Message is too long for choosen image ....");
                 }else {
                     const result_canvas_section = document.getElementById('result-canvas-section');
+                    const downloadResultBtn = document.getElementById("download-result");
+                    downloadResultBtn.download = "canvas-message.png";
+                    downloadResultBtn.href= result_canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
                     result_canvas_section.classList.replace('hidden','flex');
+                    downloadResultBtn.classList.remove('hidden');
                 }
             });
         }
