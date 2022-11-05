@@ -50,7 +50,7 @@ const main = () => {
                     expand.classList.toggle('active');
                     options.classList.toggle('active');
                     
-                    if(list.textContent === 'Rail Fence Cipher' || list.textContent === 'Affine') {
+                    if(list.textContent === 'Rail Fence Cipher' || list.textContent === 'Affine Cipher') {
                         offsetSection.classList.replace('hidden','flex');
                     }else{
                         offsetSection.classList.replace('flex','hidden');

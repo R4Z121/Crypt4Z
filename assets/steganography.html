@@ -18,26 +18,38 @@
             </div>
             <div class="nav-list list-none flex flex-col gap-3 bg-app-400 text-white fixed pl-5 top-16 left-0 w-full overflow-hidden sm:static sm:flex-row sm:top-auto sm:pl-3 sm:p-3 sm:h-auto sm:w-fit">
                 <li><a class="hover:text-app-100" href="index.html">Home</a></li>
-                <li><a class="hover:text-app-100" href="classic-crypto.html">Chiper</a></li>
+                <li><a class="hover:text-app-100" href="classic-crypto.html">Classic Cipher</a></li>
                 <li><a class="hover:text-app-100" href="development.html">Informations</a></li>
             </div>
         </nav>
     </header>
-    <main class="p-5 pt-5 pb-28 flex flex-col w-full gap-5">
-        <section class="title text-2xl">
-            <h1 class="mb-2 font-bold md:text-3xl">Steganography</h1>
-            <hr class="w-1/6 md:w-1/12 h-1 bg-black rounded">
+    <main class="p-5 pt-0 sm:pt-5 pb-9 flex flex-col w-full gap-5">
+        <section class="title text-xl flex flex-col mb-4 lg:mb-7 items-center rounded bg-app-300 p-4">
+            <h1 class="text-center md:text-2xl text-white">Steganography</h1>
         </section>
-        <section class="input-file flex flex-col gap-2 mt-5 md:mt-7 md:gap-5 md:mb-5">
-            <p class="text-lg md:text-2xl">Cover Image</p>
-            <div class="input-file flex gap-2">
-                <label for="cover-image" class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg">Upload</label>
-                <input type="file" accept="image/png, image/jpg, image/jpeg" id="cover-image" class="hidden">
-                <input type="text" class="text-file pl-3 pr-3 bg-transparent border-app-200 border-b-2 outline-none focus:outline-none w-full md:w-96 md:text-xl" disabled>
-            </div>
+        <section class="p-4 bg-blue-500 -mt-4">
+            <p class="text-white">This feature is still under development. You can already hide messages into image using encrypt button, but you can't extract them. For now, if you want to extract the message please go to <a class="text-app-300 hover:text-app-500" href="https://stylesuxx.github.io/steganography/">stylesuxx.github.io/steganography/</a>. And if you find some bugs in this feature or you want to give some suggestion about this website, please let me know by sending me a message to <a class="text-app-300 hover:text-app-500" href="mailto:m.rizkyazizi@gmail.com">m.rizkyazizi@gmail.com</a>. Thank You  ^_^</p>
         </section>
-        <section class="canvas-section grid grid-cols-1 gap-4">
-            <section class="flex-col gap-4 mt-5 hidden" id="original-canvas-section">
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-14">
+            <section class="flex flex-col gap-4">
+                <section class="input-file flex flex-col gap-2 md:gap-5 md:mb-5">
+                    <p class="text-lg md:text-2xl">Cover Image</p>
+                    <div class="input-file bg-app-200 p-1 flex gap-1 rounded">
+                        <label for="cover-image" class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg">Upload</label>
+                        <input type="file" accept="image/png, image/jpg, image/jpeg" id="cover-image" class="hidden">
+                        <input type="text" class="text-file pl-3 pr-3 bg-white outline-none focus:outline-none w-full md:text-xl rounded" disabled>
+                    </div>
+                </section>
+                <section class="area-plaintext flex flex-col gap-2">
+                    <p class="text-lg md:text-2xl">Plain Text</p>
+                    <textarea class="p-3 lg:p-6 rounded focus:outline-none bg-app-200 text-white resize-none h-52 sm:h-64 md:text-xl" id="plaintext"></textarea>
+                </section>
+                <section class="button flex mt-5 gap-2">
+                    <p class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg" id="encrypt-steganography">Encrypt</p>
+                    <p class="p-2 bg-red-600 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg" id="decrypt-steganography">Decrypt</p>
+                </section>
+            </section>
+            <section class="flex-col gap-4 hidden items-center" id="original-canvas-section">
                 <div class="title-image">
                     <h1 class="text-lg md:text-2xl">Original Image</h1>
                 </div>
@@ -46,22 +58,13 @@
                 </div>
             </section>
         </section>
-        <section class="area-plaintext flex flex-col gap-2">
-            <p class="text-lg md:text-2xl">Plain Text</p>
-            <textarea class="p-3 lg:p-6 rounded focus:outline-none bg-app-200 text-white resize-none h-52 sm:h-64 md:h-80 lg:h-96 md:text-xl" id="plaintext"></textarea>
-        </section>
-        <section class="button flex justify-end mt-5">
-            <p class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg" id="encrypt-steganography">Encrypt</p>
-        </section>
-        <section class="canvas-section grid grid-cols-1 gap-4">
-            <section class="flex-col gap-4 mt-5 hidden" id="result-canvas-section">
-                <div class="title-image">
-                    <h1 class="text-lg md:text-2xl">Result Image</h1>
-                </div>
-                <div class="canvas">
-                    <canvas id="result-image" class="max-w-full"></canvas>
-                </div>
-            </section>
+        <section class="flex-col gap-4 mt-5 hidden items-center" id="result-canvas-section">
+            <div class="title-image">
+                <h1 class="text-lg md:text-2xl">Result Image</h1>
+            </div>
+            <div class="canvas">
+                <canvas id="result-image" class="max-w-full"></canvas>
+            </div>
         </section>
     </main>
     <footer class="p-4 text-white bg-app-400 w-full flex justify-center items-center">

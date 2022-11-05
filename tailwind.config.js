@@ -31,6 +31,9 @@ module.exports = {
       },
       height: {
         '1/2': '2px'
+      },
+      borderWidth: {
+        '3' : '3px'
       }
     },
   },
