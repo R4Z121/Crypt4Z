@@ -43,19 +43,26 @@ const main = () => {
                 list.addEventListener('click', () => {
                     const keyElement = document.getElementById('key');
                     const offsetElement = document.getElementById('offset');
+                    const offsetSection = document.querySelector('.input-offset');
 
                     hidden_input.value = list.textContent;
                     text_value.innerHTML = list.textContent;
                     expand.classList.toggle('active');
                     options.classList.toggle('active');
-
+                    
+                    if(list.textContent === 'Rail Fence Cipher' || list.textContent === 'Affine') {
+                        offsetSection.classList.replace('hidden','flex');
+                    }else{
+                        offsetSection.classList.replace('flex','hidden');
+                    }
                     offsetElement.value = '';
-
+                    
                     if(list.textContent === 'Vigenere Cipher' || list.textContent === 'Playfair Cipher' || list.textContent === 'One Time Pad'){
                         keyElement.setAttribute('type','text');
                     }else{
                         keyElement.setAttribute('type','number');
                     }
+
                 })
             });
 
@@ -78,6 +85,49 @@ const main = () => {
             decrypt_button.addEventListener('click', () => {
                 const method = select_method.value;
                 decrypt(method,keyElement,offsetElement,plainTextElement,cipherTextElement);
+            });
+        }
+
+        const navigators = document.querySelectorAll('.navigator p');
+        if(navigators) {
+            navigators.forEach(el => {
+                el.addEventListener('click',() => {
+                    const active_navigator = document.querySelector('.navigator .active');
+                    active_navigator.classList.remove('active');
+                    el.classList.add('active');
+                });
+            });
+        }
+
+        const input_file = document.querySelector('.input-file input[type=file]');
+        if(input_file){
+            const text_file = document.querySelector('.input-file input[type=text');
+            input_file.addEventListener('change', () => {
+                const file = input_file.files[0];
+                text_file.value = file.name;
+                const original_canvas_section = document.getElementById('original-canvas-section');
+                const original_canvas = document.getElementById('original-image');
+                original_canvas_section.classList.replace('hidden','flex');
+                renderImage(file,original_canvas);
+            });
+        }
+
+        const encode_stegano_btn = document.getElementById('encrypt-steganography');
+        if(encode_stegano_btn) {
+            const original_canvas = document.getElementById('original-image');
+            const result_canvas = document.getElementById('result-image');
+            encode_stegano_btn.addEventListener('click', () => {
+                let success = true;
+                if(input_file.files[0]) {
+                    const text = document.getElementById('plaintext').value;
+                    success = encode_stegano(original_canvas,text,result_canvas);
+                }
+                if(!success) {
+                    alert("Message is too long for choosen image ....");
+                }else {
+                    const result_canvas_section = document.getElementById('result-canvas-section');
+                    result_canvas_section.classList.replace('hidden','flex');
+                }
             });
         }
 
@@ -152,6 +202,64 @@ const main = () => {
         }catch(err){
             plainTextElement.value = "'DECRYPT ERROR : Please enter valid key and offset !'"
         }
+    }
+    const renderImage = (file, canvas) => {
+        const reader = new FileReader();
+        const img = new Image();
+        const ctx = canvas.getContext("2d");
+
+        if(file) {
+            reader.readAsDataURL(file);
+        }
+
+        reader.onloadend = () => {
+            img.src = URL.createObjectURL(file);
+            img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img,0,0);
+            }
+        }
+    }
+    const encode_stegano = (original_canvas,text,result_canvas) => {
+        const original_ctx = original_canvas.getContext('2d');
+        const result_ctx = result_canvas.getContext('2d');
+
+        const width = original_canvas.width;
+        const height = original_canvas.height;
+
+        if((text.length * 8) > (width * height * 3)) {
+            return false;
+        }
+
+        result_canvas.width = width;
+        result_canvas.height = height;
+
+        let message_binary = text.split('').map(char => {
+            let binary_char = char.charCodeAt(0).toString(2);
+            while(binary_char.length < 8) {
+                binary_char = "0" + binary_char;
+            }
+            return binary_char;
+        }).join("").split("");
+
+        const original_data = original_ctx.getImageData(0,0,width,height);
+        const original_pixels = original_data.data;
+        let message_index = 0;
+        for(let start = 0; start < original_pixels.length; start+=4) {
+            for(let pixel = 0; pixel < 3; pixel++) {
+                const index = start + pixel;
+                if(original_pixels[index] % 2 !== 0) {
+                    original_pixels[index]--;
+                }
+                if(message_index < message_binary.length){
+                    original_pixels[index] += Number(message_binary[message_index]);
+                    message_index++;
+                }
+            }
+        }
+        result_ctx.putImageData(original_data,0,0);
+        return true;
     }
     render();
 }

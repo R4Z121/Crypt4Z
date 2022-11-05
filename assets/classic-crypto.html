@@ -18,7 +18,7 @@
             </div>
             <div class="nav-list list-none flex flex-col gap-3 bg-app-400 text-white fixed pl-5 top-16 left-0 w-full overflow-hidden sm:static sm:flex-row sm:top-auto sm:pl-3 sm:p-3 sm:h-auto sm:w-fit">
                 <li><a class="hover:text-app-100" href="index.html">Home</a></li>
-                <li><a class="hover:text-app-100" href="development.html">Steganography</a></li>
+                <li><a class="hover:text-app-100" href="steganography.html">Steganography</a></li>
                 <li><a class="hover:text-app-100" href="development.html">Informations</a></li>
             </div>
         </nav>
@@ -50,12 +50,12 @@
                     <div class="input-key flex flex-col gap-2">
                         <p class="text-lg">Key</p>
                         <input type="number" class="number-only p-3 rounded focus:outline-none bg-app-200 text-white sm:w-80 invalid:ring-2 invalid:ring-red-600 peer" id="key" placeholder="-- Enter Key --">
-                        <p class="text-super-sm text-red-600 hidden peer-invalid:block">Please input number only</p>
+                        <p class="text-super-sm md:text-base text-red-600 hidden peer-invalid:block">Please input number only</p>
                     </div>
-                    <div class="input-offset flex flex-col gap-2">
+                    <div class="input-offset flex-col gap-2 hidden">
                         <p class="text-lg">Offset</p>
                         <input type="number" class="p-3 rounded focus:outline-none bg-app-200 text-white sm:w-80 invalid:ring-2 invalid:ring-red-600 peer" id="offset" placeholder="-- Enter Offset --">
-                        <p class="text-super-sm text-red-600 hidden peer-invalid:block">Please input number only</p>
+                        <p class="text-super-sm md:text-base text-red-600 hidden peer-invalid:block">Please input number only</p>
                     </div>
                 </div>
             </div>
