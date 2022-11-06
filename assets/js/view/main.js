@@ -100,9 +100,13 @@ const main = () => {
         }
 
         const input_file = document.querySelector('.input-file input[type=file]');
+        const text_file = document.querySelector('.input-file input[type=text');
         if(input_file){
-            const text_file = document.querySelector('.input-file input[type=text');
             input_file.addEventListener('change', () => {
+                const result_canvas_section = document.getElementById('result-canvas-section');
+                if(result_canvas_section.classList.contains('flex')) {
+                    result_canvas_section.classList.replace('flex','hidden');
+                }
                 const file = input_file.files[0];
                 text_file.value = file.name;
                 const original_canvas_section = document.getElementById('original-canvas-section');
@@ -114,23 +118,38 @@ const main = () => {
 
         const encode_stegano_btn = document.getElementById('encrypt-steganography');
         if(encode_stegano_btn) {
+            const decode_stegano_btn = document.getElementById('decrypt-steganography');
             const original_canvas = document.getElementById('original-image');
             const result_canvas = document.getElementById('result-image');
+            const text = document.getElementById('plaintext');
+
             encode_stegano_btn.addEventListener('click', () => {
                 let success = true;
                 if(input_file.files[0]) {
-                    const text = document.getElementById('plaintext').value;
-                    success = encode_stegano(original_canvas,text,result_canvas);
+                    input_file.value = '';
+                    text_file.value = '';
+                    success = encode_stegano(original_canvas,text.value,result_canvas);
+                    if(!success) {
+                        makeAlert("Message is too long for choosen image ....");
+                    }else {
+                        const result_canvas_section = document.getElementById('result-canvas-section');
+                        const downloadResultBtn = document.getElementById("download-result");
+                        downloadResultBtn.download = "canvas-message.png";
+                        downloadResultBtn.href= result_canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
+                        result_canvas_section.classList.replace('hidden','flex');
+                        downloadResultBtn.classList.remove('hidden');
+                    }
+                }else{
+                    makeAlert('Please upload an image to cover your message !');
                 }
-                if(!success) {
-                    alert("Message is too long for choosen image ....");
-                }else {
-                    const result_canvas_section = document.getElementById('result-canvas-section');
-                    const downloadResultBtn = document.getElementById("download-result");
-                    downloadResultBtn.download = "canvas-message.png";
-                    downloadResultBtn.href= result_canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
-                    result_canvas_section.classList.replace('hidden','flex');
-                    downloadResultBtn.classList.remove('hidden');
+            });
+            decode_stegano_btn.addEventListener('click', () => {
+                if(input_file.files[0]) {
+                    input_file.value = '';
+                    text_file.value = '';
+                    decode_stegano(original_canvas,text);
+                }else{
+                    makeAlert('Please upload an image that might contain secret messages');
                 }
             });
         }
@@ -264,6 +283,44 @@ const main = () => {
         }
         result_ctx.putImageData(original_data,0,0);
         return true;
+    }
+    const decode_stegano = (original_canvas,message_element) => {
+        const ctx = original_canvas.getContext('2d');
+        const width = original_canvas.width;
+        const height = original_canvas.height;
+        const image_data = ctx.getImageData(0,0,width,height);
+        const pixels = image_data.data;
+        let message_binary = "";
+        const message_array = [];
+
+        for(let i = 0; i < pixels.length; i+=4) {
+            for(let j = 0; j < 3; j++) {
+                if(pixels[i+j] % 2 != 0) {
+                    message_binary += '1';
+                }else{
+                    message_binary += '0';
+                }
+                if(message_binary.length == 8) {
+                    message_array.push(message_binary);
+                    message_binary = "";
+                }
+            }
+        }
+
+        const message = message_array.map(binary => String.fromCharCode(parseInt(binary,2))).join("");
+        console.log(message);
+        message_element.value = message;
+    }
+    const makeAlert = (message) => {
+        const alertBody = document.getElementById('alert-section');
+        alertBody.classList.replace('hidden','flex');
+        const alertMessage = document.getElementById('alert-text');
+        const closeAlert = document.getElementById('close-alert');
+
+        alertMessage.innerText = message;
+        closeAlert.addEventListener('click', () => {
+            alertBody.classList.replace('flex','hidden');
+        });
     }
     render();
 }

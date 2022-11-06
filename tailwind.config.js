@@ -27,7 +27,9 @@ module.exports = {
         'super-sm': '10px'
       },
       minHeight: {
-        '75': '300px'
+        '75': '300px',
+        '63': '250px',
+        '38': '150px'
       },
       height: {
         '1/2': '2px'
