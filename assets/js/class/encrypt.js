@@ -6,8 +6,14 @@ class Encrypt {
         const alphabet = AlpahbetsChar.getAlphabets();
         const result = message.split("").map(char => {
             if((/[a-zA-Z]/).test(char)) {
-                if(alphabet.includes(char)) return alphabet[(26 + (alphabet.indexOf(char.toUpperCase()) + key))%26];
-                else return alphabet[(26 + (alphabet.indexOf(char.toUpperCase()) + key))%26].toLowerCase();
+                if(!alphabet.includes(char)) {
+                    char = char.toUpperCase();
+                }
+                let alphabetIndex = alphabet.indexOf(char) + key;
+                while (alphabetIndex < 0) {
+                    alphabetIndex = alphabetIndex + 26;
+                }
+                return alphabet[alphabetIndex%26].toLowerCase();
             }else {
                 return char;
             }
