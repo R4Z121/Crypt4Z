@@ -23,64 +23,63 @@
             </div>
         </nav>
     </header>
-    <main class="p-5 pt-0 sm:pt-5 pb-9 flex flex-col w-full gap-5">
-        <section class="title text-xl flex flex-col mb-4 lg:mb-7 items-center rounded bg-app-300 p-4">
-            <h1 class="text-center md:text-2xl text-white">Steganography</h1>
-        </section>
-        <section class="p-4 bg-blue-500 -mt-4">
-            <p class="text-white">This feature is still under development. If you find some bugs in this feature or you want to give some suggestions about this website, please let me know by sending me a message to <a class="text-app-300 hover:text-app-500" href="mailto:m.rizkyazizi@gmail.com">m.rizkyazizi@gmail.com</a>. Thank You  ^_^</p>
-        </section>
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-14">
-            <section class="flex flex-col gap-4">
-                <section class="input-file flex flex-col gap-2 md:gap-5 md:mb-5">
-                    <p class="text-lg md:text-2xl">Cover Image</p>
-                    <div class="input-file bg-app-200 p-1 flex gap-1 rounded">
-                        <label for="cover-image" class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg">Upload</label>
-                        <input type="file" accept="image/png, image/jpg, image/jpeg" id="cover-image" class="hidden">
-                        <input type="text" class="text-file pl-3 pr-3 bg-white outline-none focus:outline-none w-full md:text-xl rounded" disabled>
+    <div class="flex flex-col justify-between min-h-screen">
+        <main class="p-5 pt-0 sm:pt-5 pb-9 flex flex-col w-full gap-5">
+            <section class="title text-xl flex flex-col items-center rounded bg-app-300 p-2">
+                <h1 class="text-center text-base text-white">Steganography</h1>
+            </section>
+            <section class="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-14">
+                <section class="flex flex-col gap-4">
+                    <section class="input-file flex flex-col gap-1 md:gap-5">
+                        <p class="text-lg ">Cover Image</p>
+                        <div class="input-file bg-app-200 p-1 flex gap-1 rounded">
+                            <label for="cover-image" class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg">Upload</label>
+                            <input type="file" accept="image/png, image/jpg, image/jpeg" id="cover-image" class="hidden">
+                            <input type="text" class="text-file pl-3 pr-3 bg-white outline-none focus:outline-none w-full md:text-xl rounded" disabled>
+                        </div>
+                    </section>
+                    <section class="area-plaintext flex flex-col gap-2">
+                        <p class="text-lg ">Plain Text</p>
+                        <textarea class="p-3 lg:p-6 rounded focus:outline-none bg-app-200 text-white resize-none h-52 sm:h-64 md:text-xl" id="plaintext"></textarea>
+                    </section>
+                    <section class="button flex mt-5 gap-2">
+                        <p class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg" id="encrypt-steganography">Encrypt</p>
+                        <p class="p-2 bg-red-600 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg" id="decrypt-steganography">Decrypt</p>
+                    </section>
+                </section>
+                <section class="flex-col gap-4 hidden items-center" id="original-canvas-section">
+                    <div class="title-image">
+                        <h1 class="text-lg md:text-2xl">Original Image</h1>
+                    </div>
+                    <div class="canvas w-full h-96 max-w-md">
+                        <canvas id="original-image" class="w-full h-full"></canvas>
                     </div>
                 </section>
-                <section class="area-plaintext flex flex-col gap-2">
-                    <p class="text-lg md:text-2xl">Plain Text</p>
-                    <textarea class="p-3 lg:p-6 rounded focus:outline-none bg-app-200 text-white resize-none h-52 sm:h-64 md:text-xl" id="plaintext"></textarea>
-                </section>
-                <section class="button flex mt-5 gap-2">
-                    <p class="p-2 bg-app-300 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg" id="encrypt-steganography">Encrypt</p>
-                    <p class="p-2 bg-red-600 text-white rounded-sm pl-5 pr-5 text-sm cursor-pointer md:text-lg" id="decrypt-steganography">Decrypt</p>
-                </section>
             </section>
-            <section class="flex-col gap-4 hidden items-center" id="original-canvas-section">
+            <section class="flex flex-col gap-4 mt-5 hidden items-center" id="result-canvas-section">
                 <div class="title-image">
-                    <h1 class="text-lg md:text-2xl">Original Image</h1>
+                    <h1 class="text-lg md:text-2xl">Result Image</h1>
                 </div>
-                <div class="canvas">
-                    <canvas id="original-image" class="max-w-full"></canvas>
+                <div class="canvas w-full h-96 max-w-md">
+                    <canvas id="result-image" class="w-full h-full"></canvas>
+                </div>
+                <a class="p-5 bg-red-500 text-white w-fit text-center rounded hidden" id="download-result">Download Image</a>
+            </section>
+            <section class="fixed top-0 bottom-0 left-0 right-0 z-50 after:content-[''] after:absolute after:w-full after:h-full after:bg-black after:opacity-60 hidden justify-center items-center p-5" id="alert-section">
+                <div class="alert p-4 bg-app-400 ring-2 ring-app-200 w-full max-w-md sm:max-w-xl relative z-40 rounded shadow-md">
+                    <p class="text-red-600 text-lg absolute top-0 right-3 cursor-pointer" id="close-alert">x</p>
+                    <h1 class="text-red-500 font-bold text-2xl text-center">WARNING</h1>
+                    <hr class="border border-white mt-2 mb-3">
+                    <div class="text-box w-full flex justify-center items-center sm:min-h-38">
+                        <p class="text-lg text-white text-center" id="alert-text">Alert Text</p>
+                    </div>
                 </div>
             </section>
-        </section>
-        <section class="flex-col gap-4 mt-5 hidden items-center" id="result-canvas-section">
-            <div class="title-image">
-                <h1 class="text-lg md:text-2xl">Result Image</h1>
-            </div>
-            <div class="canvas">
-                <canvas id="result-image" class="max-w-full"></canvas>
-            </div>
-            <a class="p-5 bg-red-500 text-white w-fit text-center rounded hidden" id="download-result">Download Image</a>
-        </section>
-        <section class="fixed top-0 bottom-0 left-0 right-0 z-50 after:content-[''] after:absolute after:w-full after:h-full after:bg-black after:opacity-60 hidden justify-center items-center p-5" id="alert-section">
-            <div class="alert p-4 bg-app-400 ring-2 ring-app-200 w-full max-w-md sm:max-w-xl relative z-40 rounded shadow-md">
-                <p class="text-red-600 text-lg absolute top-0 right-3 cursor-pointer" id="close-alert">x</p>
-                <h1 class="text-red-500 font-bold text-2xl text-center">WARNING</h1>
-                <hr class="border border-white mt-2 mb-3">
-                <div class="text-box w-full flex justify-center items-center sm:min-h-38">
-                    <p class="text-lg text-white text-center" id="alert-text">Alert Text</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="p-4 text-white bg-app-400 w-full flex justify-center items-center">
-        <h4 class="text-super-sm md:text-sm">Copyright &copy;2022 R4Z121. All Rights Reserved</h4>
-    </footer>
+        </main>
+        <footer class="p-4 text-white bg-app-400 w-full flex justify-center items-center">
+            <h4 class="text-super-sm md:text-sm">Copyright &copy;2022 R4Z121. All Rights Reserved</h4>
+        </footer>
+    </div>
     <script src="app.js" type="module"></script>
 </body>
 </html>

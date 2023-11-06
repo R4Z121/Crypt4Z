@@ -17,7 +17,7 @@ const main = () => {
                 link.addEventListener('click', e => {
                     e.preventDefault;
                     const target = link.dataset.target;
-                    const offsetTop = document.querySelector("#" + target).offsetTop - 86;
+                    const offsetTop = document.querySelector("#" + target).offsetTop - 68;
                     
                     scroll({
                         top: offsetTop,
@@ -113,6 +113,12 @@ const main = () => {
                 const original_canvas = document.getElementById('original-image');
                 original_canvas_section.classList.replace('hidden','flex');
                 renderImage(file,original_canvas);
+                const offsetTop = original_canvas_section.offsetTop - 150;
+        
+                scroll({
+                    top: offsetTop,
+                    behavior: "smooth"
+                });
             });
         }
 
@@ -131,13 +137,19 @@ const main = () => {
                     success = encode_stegano(original_canvas,text.value,result_canvas);
                     if(!success) {
                         makeAlert("Message is too long for choosen image ....");
-                    }else {
+                    } else {
                         const result_canvas_section = document.getElementById('result-canvas-section');
                         const downloadResultBtn = document.getElementById("download-result");
                         downloadResultBtn.download = "canvas-message.png";
                         downloadResultBtn.href= result_canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
                         result_canvas_section.classList.replace('hidden','flex');
                         downloadResultBtn.classList.remove('hidden');
+                        const offsetTop = result_canvas_section.offsetTop - 85;
+        
+                        scroll({
+                            top: offsetTop,
+                            behavior: "smooth"
+                        });
                     }
                 }else{
                     makeAlert('Please upload an image to cover your message !');
@@ -301,7 +313,9 @@ const main = () => {
                     message_binary += '0';
                 }
                 if(message_binary.length == 8) {
-                    message_array.push(message_binary);
+                    if(message_binary != "00000000") {
+                        message_array.push(message_binary);
+                    }
                     message_binary = "";
                 }
             }
